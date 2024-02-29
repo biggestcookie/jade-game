@@ -1,15 +1,13 @@
 <template>
-    <section class="hero is-fullheight-with-navbar">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title mb-5">Uh oh!</h1>
-                <h2 class="subtitle">
-                    Looks like this page doesn't exist.
-                    <router-link to="/">
-                        Click here to return to the homepage.
-                    </router-link>
-                </h2>
-            </div>
-        </div>
-    </section>
+  <section class="hero is-fullheight">
+    <div class="hero-body is-flex is-justify-content-center has-text-centered">
+      <div class="container">
+        <h1
+          class="title mb-5 has-text-primary-light is-family-secondary has-text-weight-normal"
+        >
+          ☏
+        </h1>
+      </div>
+    </div>
+  </section>
 </template>
