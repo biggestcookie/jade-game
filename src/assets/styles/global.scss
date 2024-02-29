@@ -1,2 +1,35 @@
-@import "variables";
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap");
+
+
+/* Fonts */
+$family-primary: "Pixelify Sans", -apple-system, system-ui, BlinkMacSystemFont, Arial,
+    sans-serif;
+$family-secondary: "Silkscreen", -apple-system, system-ui, BlinkMacSystemFont, Arial,
+    sans-serif;
+
+/* Colors */
+$background: #0e1721;
+$primary: #2C6C5C;
+$secondary: #142B2C;
+$text: #e3e3e3;
+
+
 @import "bulma/bulma";
+
+a {
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.65s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
