@@ -6,12 +6,6 @@ export function useWatchChanged(watched: Ref<boolean>, key: string) {
   const { complete } = useCompleted();
   const oldValue = useStorage<boolean | undefined>(key, undefined);
   let ignore = true;
-  setTimeout(() => {
-    if (oldValue.value === undefined) {
-      oldValue.value = watched.value;
-      ignore = false;
-    }
-  }, 500);
 
   function compareToStored(newValue: boolean) {
     console.log(oldValue.value);
@@ -29,5 +23,13 @@ export function useWatchChanged(watched: Ref<boolean>, key: string) {
     compareToStored(newValue);
   });
 
-  onMounted(() => compareToStored(watched.value));
+  onMounted(() => {
+    setTimeout(() => {
+      if (oldValue.value === undefined) {
+        oldValue.value = watched.value;
+      }
+      ignore = false;
+      compareToStored(oldValue.value);
+    }, 500);
+  });
 }
