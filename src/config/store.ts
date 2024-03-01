@@ -6,6 +6,7 @@ export const useStore = defineStore("store", {
     progress: useStorage("progress", 0),
     startTime: useStorage("startTime", 0),
     hints: useStorage("hints", []),
+    completeScreen: false,
   }),
   actions: {
     incrementProgressIfLesser(value: number) {

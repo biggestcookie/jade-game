@@ -1,6 +1,5 @@
 import { RouteRecordRaw, createMemoryHistory, createRouter } from "vue-router";
 import Home from "../pages/home.page.vue";
-import { useStore } from "./store";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -52,14 +51,6 @@ const router = createRouter({
     to.hash
       ? { el: to.hash, behavior: "smooth" }
       : { top: 0, left: 0, behavior: "smooth" },
-});
-
-router.beforeEach((to) => {
-  const store = useStore();
-  const index = routes.findIndex((route) => route.name === to.name);
-  if (index < routes.length - 2) {
-    store.incrementProgressIfLesser(index);
-  }
 });
 
 export { router, routes };

@@ -33,3 +33,8 @@ a {
 .fade-leave-to {
     opacity: 0;
 }
+
+.table.is-borderless td,
+.table.is-borderless th {
+    border: 0;
+}

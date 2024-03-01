@@ -1,20 +1,43 @@
 <script setup lang="ts">
 import { useStorage } from "@vueuse/core";
+import UAParser from "ua-parser-js";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
+import { useCompleted } from "../composables/completed.composable";
 import { useStore } from "../config/store";
 
+const { complete } = useCompleted();
 const started = useStorage("started", false);
 const router = useRouter();
 const store = useStore();
 
 function onStart() {
   store.startTimer();
-  router.push("/morse");
+  complete();
 }
+
+const lastPath = ref("");
+const isMobile = new UAParser().getDevice()?.type === "mobile";
+
+onMounted(() => {
+  // if (!isMobile) {
+  //   router.push("/404");
+  // }
+
+  const routes = router.getRoutes();
+  if (store.progress > 0 && store.progress < routes.length - 2) {
+    lastPath.value = routes[store.progress].path;
+  }
+});
 </script>
 
 <template>
   <div v-if="!started">
+    <p
+      class="is-size-1 mb-5 has-text-primary-light is-family-secondary has-text-weight-normal"
+    >
+      𓆝 𓆟 𓆞 𓆝 𓆟
+    </p>
     <a
       @click="started = true"
       class="title mb-5 has-text-weight-normal has-text-primary-light is-family-secondary"
@@ -43,9 +66,10 @@ function onStart() {
         </ol>
       </div>
     </div>
-    <button class="button" @click="onStart">
+    <button v-if="!lastPath" class="button" @click="onStart">
       press to start
     </button>
+    <router-link v-else class="button" :to="lastPath">continue</router-link>
   </div>
 </template>
 

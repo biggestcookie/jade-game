@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useVibrate } from "@vueuse/core";
-import { onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
+import { useCompleted } from "../composables/completed.composable";
 
 const { vibrate, stop } = useVibrate();
+const { complete } = useCompleted();
 const isVibrating = ref(false);
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const str = ref(["A", "A", "A"]);
@@ -23,7 +25,19 @@ function changeCharAt(index: number, amount: number) {
     str.value[index] = alphabet[alphabet.indexOf(str.value[index]) + amount];
   }
 
-  // check answer
+  const correct = str.value.reduce((correct, value, index) => {
+    if (
+      ((index === 0 || index === 2) && value !== "S") ||
+      (index === 1 && value !== "O")
+    ) {
+      correct = false;
+    }
+    return correct;
+  }, true);
+
+  if (correct) {
+    complete();
+  }
 }
 
 function startVibrate(): void {
@@ -41,13 +55,17 @@ function stopVibrate(): void {
   clearInterval(interval);
 }
 
-function toggleVibrate(): void {
-  if (isVibrating.value) {
-    stopVibrate();
-  } else {
-    startVibrate();
-  }
-}
+// function toggleVibrate(): void {
+//   if (isVibrating.value) {
+//     stopVibrate();
+//   } else {
+//     startVibrate();
+//   }
+// }
+
+onMounted(() => {
+  setTimeout(() => startVibrate(), 1000);
+});
 
 onUnmounted(() => {
   stopVibrate();
@@ -56,11 +74,14 @@ onUnmounted(() => {
 
 <template>
   <div>
-    <p class="title has-text-primary-light my-6" @click="toggleVibrate">
+    <p class="title has-text-primary-light my-6">ﮩ٨ـﮩﮩ٨ـﮩﮩ٨ـ</p>
+    <!-- <p class="title has-text-primary-light my-6" @click="toggleVibrate">
       {{ isVibrating ? "▐▐" : "▶" }}
-    </p>
+    </p> -->
     <!-- <p class="subtitle is-7">ensure you are not on silent</p> -->
-    <table class="table has-background-black has-text-white mx-auto">
+    <table
+      class="table is-borderless has-background-black has-text-white mx-auto"
+    >
       <div class="tbody">
         <tr>
           <td @click="changeCharAt(0, -1)">◭</td>
@@ -87,3 +108,10 @@ onUnmounted(() => {
     </table>
   </div>
 </template>
+
+<style lang="scss" scoped>
+td {
+  cursor: pointer;
+  user-select: none;
+}
+</style>
