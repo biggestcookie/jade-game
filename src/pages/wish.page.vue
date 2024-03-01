@@ -5,7 +5,7 @@ import { useCompleted } from "../composables/use-completed.composable";
 const date = ref<Date>(new Date());
 const { complete } = useCompleted();
 
-let interval: number;
+let interval: ReturnType<typeof setTimeout>;
 
 onMounted(() => {
   interval = setInterval(() => {
