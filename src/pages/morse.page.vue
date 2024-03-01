@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useVibrate } from "@vueuse/core";
 import { onMounted, onUnmounted, ref } from "vue";
-import { useCompleted } from "../composables/completed.composable";
+import { useCompleted } from "../composables/use-completed.composable";
 
 const { vibrate, stop } = useVibrate();
 const { complete } = useCompleted();
@@ -115,3 +115,4 @@ td {
   user-select: none;
 }
 </style>
+../composables/use-completed.composable

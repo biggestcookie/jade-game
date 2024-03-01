@@ -1,24 +1,10 @@
 <script setup lang="ts">
 import { useBattery } from "@vueuse/core";
-import { onMounted, watch } from "vue";
-import { useCompleted } from "../composables/completed.composable";
+import { useWatchChanged } from "../composables/use-watch-changed.composable";
 
 const { charging } = useBattery();
-const { complete } = useCompleted();
 
-onMounted(() => console.log(charging.value));
-
-let initialIgnore = false;
-setTimeout(() => (initialIgnore = true), 500);
-
-watch(charging, (newValue, oldValue) => {
-  if (!initialIgnore) {
-    initialIgnore = true;
-    return;
-  } else if (newValue !== oldValue) {
-    complete();
-  }
-});
+useWatchChanged(charging, "chargeStatus");
 </script>
 
 <template>

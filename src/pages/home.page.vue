@@ -3,7 +3,7 @@ import { useStorage } from "@vueuse/core";
 import UAParser from "ua-parser-js";
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
-import { useCompleted } from "../composables/completed.composable";
+import { useCompleted } from "../composables/use-completed.composable";
 import { useStore } from "../config/store";
 
 const { complete } = useCompleted();
@@ -59,8 +59,10 @@ onMounted(() => {
     <div class="block subtitle m-6">
       <div class="subtitle has-text-justified">
         <ol>
-          <li>searching is allowed</li>
-          <li>if you use hints we will remember it</li>
+          <li>use your head</li>
+          <li>use your phone</li>
+          <li>searching is allowed (you won't need it)</li>
+          <!-- <li>if you use hints we will remember it</li> -->
           <li>be creative</li>
           <li>be quick...</li>
         </ol>
@@ -87,3 +89,4 @@ p.title {
   }
 }
 </style>
+../composables/use-completed.composable

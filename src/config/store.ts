@@ -14,7 +14,7 @@ export const useStore = defineStore("store", {
     },
     startTimer() {
       if (this.startTime === 0) {
-        this.startTime = performance.now();
+        this.startTime = new Date().getTime();
       }
     },
   },
