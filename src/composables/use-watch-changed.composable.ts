@@ -4,16 +4,14 @@ import { useCompleted } from "./use-completed.composable";
 
 export function useWatchChanged(watched: Ref<boolean>, key: string) {
   const { complete } = useCompleted();
-  const oldValue = useStorage<boolean | undefined>(key, undefined);
+  const originalValue = useStorage<boolean | undefined>(key, undefined);
   let ignore = true;
 
   function compareToStored(newValue: boolean) {
-    if (oldValue === undefined || ignore) {
+    if (originalValue === undefined || ignore) {
       return;
     }
-    console.log(oldValue.value);
-    console.log(newValue);
-    if (oldValue.value !== newValue) {
+    if (originalValue.value !== newValue) {
       localStorage.removeItem(key);
       complete();
     }
@@ -27,9 +25,8 @@ export function useWatchChanged(watched: Ref<boolean>, key: string) {
     setTimeout(() => {
       ignore = false;
 
-      if (oldValue.value === undefined) {
-        console.log("storing: " + watched.value);
-        oldValue.value = watched.value;
+      if (originalValue.value === undefined) {
+        originalValue.value = watched.value;
       } else {
         compareToStored(watched.value);
       }
