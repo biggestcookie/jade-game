@@ -8,11 +8,11 @@ export function useWatchChanged(watched: Ref<boolean>, key: string) {
   let ignore = true;
 
   function compareToStored(newValue: boolean) {
-    console.log(oldValue.value);
-    console.log(newValue);
-    if (oldValue === undefined && ignore) {
+    if (oldValue === undefined || ignore) {
       return;
     }
+    console.log(oldValue.value);
+    console.log(newValue);
     if (oldValue.value !== newValue) {
       localStorage.removeItem(key);
       complete();
@@ -25,11 +25,14 @@ export function useWatchChanged(watched: Ref<boolean>, key: string) {
 
   onMounted(() => {
     setTimeout(() => {
-      if (oldValue.value === undefined) {
-        oldValue.value = watched.value;
-      }
       ignore = false;
-      compareToStored(oldValue.value);
-    }, 500);
+
+      if (oldValue.value === undefined) {
+        console.log("storing: " + watched.value);
+        oldValue.value = watched.value;
+      } else {
+        compareToStored(watched.value);
+      }
+    }, 1000);
   });
 }
