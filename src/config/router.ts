@@ -12,12 +12,6 @@ const routes: RouteRecordRaw[] = [
     name: "Morse",
     component: () => import("../pages/morse.page.vue"),
   },
-
-  {
-    path: "/theme",
-    name: "Theme",
-    component: () => import("../pages/theme.page.vue"),
-  },
   {
     path: "/wish",
     name: "Wish",
@@ -32,6 +26,11 @@ const routes: RouteRecordRaw[] = [
     path: "/tinfoil",
     name: "Tinfoil",
     component: () => import("../pages/tinfoil.page.vue"),
+  },
+  {
+    path: "/theme",
+    name: "Theme",
+    component: () => import("../pages/theme.page.vue"),
   },
   {
     path: "/drop",
