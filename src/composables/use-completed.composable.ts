@@ -5,12 +5,13 @@ export function useCompleted(): { complete: () => void } {
   const store = useStore();
   const router = useRouter();
   const route = useRoute();
+  console.log(router);
   const routes = router.getRoutes();
 
   function complete() {
     const nextPageIndex =
       routes.findIndex((page) => page.name === route.name) + 1;
-    if (nextPageIndex < routes.length - 2) {
+    if (nextPageIndex < routes.length - 3) {
       store.incrementProgressIfLesser(nextPageIndex);
     }
 
