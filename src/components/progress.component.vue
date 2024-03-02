@@ -13,7 +13,7 @@ const progressMsg = computed(() => {
 
   const currentPageIndex = routes.findIndex((page) => page.name === route.name);
 
-  for (let index = 0; index < routes.length - 3; index++) {
+  for (let index = 0; index < routes.length - 2; index++) {
     if (index === currentPageIndex) {
       msg.push(["⊛", undefined]);
     } else if (index < store.progress) {

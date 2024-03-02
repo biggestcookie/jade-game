@@ -5,6 +5,7 @@ export const useStore = defineStore("store", {
   state: () => ({
     progress: useStorage("progress", 0),
     startTime: useStorage("startTime", 0),
+    completionTime: useStorage("completionTime", 0),
     hints: useStorage("hints", []),
     completeScreen: false,
   }),

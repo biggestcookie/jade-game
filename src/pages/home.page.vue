@@ -25,7 +25,7 @@ onMounted(() => {
   // }
 
   const routes = router.getRoutes();
-  if (store.progress > 0 && store.progress < routes.length - 3) {
+  if (store.progress > 0 && store.progress < routes.length - 2) {
     lastPath.value = routes[store.progress].path;
   }
 });

@@ -12,10 +12,11 @@ const routes: RouteRecordRaw[] = [
     name: "Morse",
     component: () => import("../pages/morse.page.vue"),
   },
+
   {
-    path: "/plug",
-    name: "Plug",
-    component: () => import("../pages/plug.page.vue"),
+    path: "/theme",
+    name: "Theme",
+    component: () => import("../pages/theme.page.vue"),
   },
   {
     path: "/wish",
@@ -23,14 +24,9 @@ const routes: RouteRecordRaw[] = [
     component: () => import("../pages/wish.page.vue"),
   },
   {
-    path: "/theme",
-    name: "Theme",
-    component: () => import("../pages/theme.page.vue"),
-  },
-  {
-    path: "/drop",
-    name: "Drop",
-    component: () => import("../pages/drop.page.vue"),
+    path: "/plug",
+    name: "Plug",
+    component: () => import("../pages/plug.page.vue"),
   },
   {
     path: "/tinfoil",
@@ -38,14 +34,15 @@ const routes: RouteRecordRaw[] = [
     component: () => import("../pages/tinfoil.page.vue"),
   },
   {
+    path: "/drop",
+    name: "Drop",
+    component: () => import("../pages/drop.page.vue"),
+  },
+
+  {
     path: "/victory",
     name: "victory",
     component: () => import("../pages/victory.page.vue"),
-  },
-  {
-    path: "/failure",
-    name: "failure",
-    component: () => import("../pages/failure.page.vue"),
   },
   {
     path: "/404",
