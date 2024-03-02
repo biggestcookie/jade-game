@@ -20,9 +20,9 @@ const lastPath = ref("");
 const isMobile = new UAParser().getDevice()?.type === "mobile";
 
 onMounted(() => {
-  // if (!isMobile) {
-  //   router.push("/404");
-  // }
+  if (!isMobile) {
+    router.push("/404");
+  }
 
   const routes = router.getRoutes();
   if (store.progress > 0 && store.progress < routes.length - 2) {
